@@ -1,0 +1,42 @@
+// images for card class and derivitives
+
+.card {
+	@extend %container-flex;
+	border: $border--theme;
+	border-radius: $border--rounded-corners;
+	background-color: setColor(primary, xx-light);
+	@include margin-left-right(auto);
+	justify-content: center;
+	padding: em(5px);
+	width: 96%;
+	align-content: center;
+	max-width: em(400px);
+	margin-bottom: em(20px);
+	@include mq(medium) {
+		align-content: space-around;
+		width: 47%;
+		padding: em(15px);
+		box-shadow: 3px 3px 15px 0 $color-shadow;
+		margin-bottom: em(30px);
+		max-width: em(500px);
+	}
+	@include mq(x-large) {
+		width: 31%;
+
+
+	}
+
+	@include e(content) {
+		@include m(verticle) {
+			@extend %container-flex-verticle;
+		}
+	}
+}
+
+.wrapper {
+	@extend %container-flex;
+	@include mq(medium) {
+		flex-wrap: wrap;
+		@include pad-left-right(1%);
+	}
+}

@@ -1,0 +1,47 @@
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba($color-shadow, .5);
+	z-index:  map-get($z-index, pop-up);
+	@include mq(medium) {
+		background-color: rgba($color-shadow, .2);		
+	}
+
+}
+
+
+.modal {
+	position: fixed;
+	top: 25vh;
+	width: 100%;
+	min-height: 200px;
+	transform: translateY(-50px);
+	background-color: setColor(primary, xx-light);
+	text-align: center;
+	border: $border--thick;
+	z-index:  map-get($z-index, pop-up);
+	@include mq(medium) {
+		width: 500px;
+		left: 50vw;
+		transform: translateX(-200px);
+		box-shadow: 0 0 50px 30px $color-shadow;
+	}	
+}
+
+.warning {
+	background: $color-warning;
+	color: $color-font-white;
+}
+
+.success {
+	background: $color-highlight;
+	color: $color-font-white;	
+}
+
+
+
+

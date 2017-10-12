@@ -1,0 +1,31 @@
+//////////////////////////////////////////////////
+//			Typography  						//
+//////////////////////////////////////////////////
+
+// ============ Import if Google Fonts URL is defined ==============
+
+@if variable-exists(font-url--google) {
+  @import url($font-url--google);
+}
+
+// =============== Headlines ======================
+
+.headline {
+	&--primary {
+		@extend %hdln-prim;
+		& strong {
+			font-weight: $font-weight--ultra-bold;
+		}
+	}
+	&--secondary {
+		@extend %hdln-sec;
+	}
+}
+
+.link {
+	@extend %links;
+}
+
+p {
+	@include margin-top-bottom(em(5px));
+}

@@ -1,0 +1,28 @@
+//////////////////////////////////////////////////
+//			Image styles   						//
+//////////////////////////////////////////////////
+.img {
+	@include m(logo) {		// .img--logo
+		@extend %img--center;
+		margin-bottom: 20px;
+	}
+	
+	@include m(avatar) {	// .img--avatar
+		@extend %img--center;
+		border-radius: $border--round;
+		height: 7rem;
+		@include mq(medium) {
+			box-shadow: 0 0 2px 3px $color-shadow;
+			@include margin-left-right(15px);
+		}
+
+	}	
+	
+	@include m(profile) {		// .img--profile
+		@extend %img--center;
+		border-radius: $border--round;
+		height: 3rem;
+	}
+	
+}
+

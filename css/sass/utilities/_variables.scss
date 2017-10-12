@@ -1,0 +1,121 @@
+//////////////////////////////////////////////////
+//			Variables 							//
+//////////////////////////////////////////////////
+
+// ===============Fonts ==========================
+
+//	 	Font stack
+$font-url--google      : 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900';
+$font-family--primary  : Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// 		Font weights
+
+$font-weight--thin       : 100;
+$font-weight--light      : 300;
+$font-weight--medium     : 400;
+$font-weight--bold       : 700;
+$font-weight--ultra-bold : 900;
+
+//		Font size
+$base__font-size	: 16px;
+$base__line-height	: 1.5;
+
+// =================Colors========================
+
+//		Base colors
+
+$white	: #fff;
+$black	: #101010;
+$grey	: #676666;
+
+//		Theme colors
+//			-color names chosen using "name that color" @ http://chir.ag/projects/name-that-color
+$steel-blue			: #4E93B7;
+$charlotte			: #AEF9E4;
+$pickled-bluewood	: #2B3654;
+$punch				: #DC4333;
+
+
+//		Colors by usage
+
+$color-primary		: $steel-blue;
+$color-highlight	: $charlotte;
+$color-shadow		: $pickled-bluewood;
+$color-warning		: punch;
+
+
+// 		Color palettes
+
+$color-palettes: (
+	primary: (
+		xx-light : lighten($color-primary, 43%),
+		x-light  : lighten($color-primary, 35%),
+		light    : lighten($color-primary, 12%),
+		base     : $color-primary,
+		dark     : darken($color-primary, 8%),
+		x-dark   : darken($color-primary, 16%)
+    ),
+	grey: (
+		xx-light : lighten($grey, 43%),
+		x-light  : lighten($grey, 35%),
+		light    : lighten($grey, 12%),
+		base     : $grey,
+		dark     : darken($grey, 8%),
+		x-dark   : darken($grey, 16%)
+    )
+);
+	
+// Font Colors
+$color-font-base	: map-get(map-get($color-palettes,grey), base);
+$color-font-light	: map-get(map-get($color-palettes,grey), light);
+$color-font-lighter	: map-get(map-get($color-palettes,grey), x-light);
+$color-font-white	: $white;
+
+// UI Colors
+
+$ui-colors: (
+ 	default : $color-primary,
+  	cancel  : map-get(map-get($color-palettes,grey), base),
+);
+
+// ============= Borders ===========================
+$border--round				: 50%;
+$border--rounded-corners	: 10px;
+$border--pill				: 25px;
+$border--theme				: 1px solid $color-font-lighter;
+$border--thick				: 3px solid $color-font-light;
+
+// ============= Breakpoints =======================
+
+$brkpoint--sm    : 480px;
+$brkpoint--md    : 768px;
+$brkpoint--lg    : 1024px;
+$brkpoint--x-lg    : 1400px;
+
+
+// ============= Grid ==============================
+
+// Grid Structure, grid color variables located under colors
+
+$g-col-width    : 65px;
+$g-gutter-width : 20px;
+$g-col-count    : 12;
+$g-cont-max-w   : 1200px;
+
+// ============== Page Width =======================
+
+$pg-max-w	: 1200px;
+
+// ============== CSS Transitions ===================
+
+$trns--duration-fast	: 0.4s ease-in;
+$trns--duration-slow	: 0.8s ease-in-out;
+
+// ============== Layering ==========================
+$z-index: (
+	menu	: 100,
+	hide	: -50,
+	pop-up	: 200,
+)
+
+

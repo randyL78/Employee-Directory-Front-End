@@ -1,0 +1,36 @@
+/* Begin Custom Styles  */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: $font-family--primary;
+	color: setColor(grey, dark);
+	background-color: setColor(primary, x-light);
+}
+
+h1 {
+	font-weight: $font-weight--bold;
+	font-size: 1.4rem;
+	text-transform: uppercase;
+}
+
+ p {
+	font-size: $base__font-size;
+	font-weight: $font-weight--medium;
+}
+
+
+// Remove bullets from unordered lists
+ul {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+
+li {
+	display: inline-block;
+}
+
+

@@ -1,0 +1,173 @@
+//////////////////////////////////////////////////
+//			Placeholders						//
+//////////////////////////////////////////////////
+
+
+// =============== Helpers =======================
+
+// 		Clearfix
+
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// 		Center alignment
+
+%center-align {
+	text-align: center;
+}
+
+// 		Right alignment
+
+%right-align {
+	text-align: right;
+}
+
+
+// 		Screen reader text
+
+%srt {
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+// =============== Buttons ======================
+
+%button {
+	@extend %center-align;
+ 	@include pad-top-bottom(15px);
+	font-weight: $font-weight--bold;
+	font-size: em(17px);
+	border: 0;
+	color: $white;
+	width: 100%; 
+	border-radius: $border--rounded-corners;
+	cursor: pointer;
+}
+
+%button-navs {
+	background-color: $color-shadow;
+	opacity: .75;
+	transition: opacity .3s;
+	cursor: pointer;
+	min-height: 45px;
+}
+
+// =============== Links ========================
+
+%links {
+	text-decoration: none;  //	Remove Underlines
+	color: $color-shadow;
+}
+
+// =============== Images =======================
+
+%img--center {
+	display: block;
+	@include margin-left-right(auto);
+}
+
+// =============== Headlines ====================
+
+%hdln-prim {
+	display: block;
+	color: $color-font-base;
+ 	font-weight: $font-weight--medium;
+  	font-size: em(20px);
+	margin: em(40px) auto em(25px);
+	padding-left: 10px;
+	@include margin-left-right(auto);
+	@include mq(medium) {
+		text-align: left;
+		padding-left: 20px;
+	}
+
+}
+
+%hdln-sec {
+  	color: setColor(grey, medium);
+  	font-weight: $font-weight--bold;
+	font-size: em(20px);
+	margin-bottom: em(5px);
+//	@include margin-top-bottom(5px);
+}
+
+// =============== Nav Items ====================
+%nav-bar {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;	
+}
+
+
+%nav-item-horz {
+	@include mq(medium) {
+    	display: inline-block;
+    	margin: 0;
+  	}
+	@include mq(large) {
+//		@include pad-left-right(em(100px));
+  	}
+}
+
+%nav-item-link {
+	@include margin-left-right(auto);
+  	font-weight: $font-weight--medium;
+  	@extend %center-align;
+  	font-size: em(20px);
+  	display: block;
+	height:  54px;
+  	padding: em(12px) em(22px) em(20px);
+	border-radius: $border--rounded-corners;
+	@include mq(medium) {
+		margin-left: em(5px);
+	}
+	@include mq(large) {
+		display: inline-block;
+	}
+}
+
+%nav-item-on {
+	font-weight: $font-weight--medium;
+	background-color: $color-primary;
+	color: $white;
+ 	
+}
+
+//	============= Flex Box ========================
+
+%container-flex {
+	display: flex;
+	flex-direction: column;
+	@include mq(medium) {
+		flex-direction: row;
+	}
+}
+
+%container-flex-fixed {
+		display: flex;
+		flex-direction: row;
+		align-content: center;
+		justify-content: center;
+		text-align: center;
+}
+
+%container-flex-verticle {
+	display: flex;
+	flex-direction: column;	
+}
+
+
+

@@ -1,0 +1,28 @@
+//////////////////////////////////////////////////
+//		Functions  			 					//
+//////////////////////////////////////////////////
+
+// =============== Convert pixels to ems ==========================
+
+@function em($target, $context: $base__font-size) {
+	// $target = pixel unit to convert
+	// $context(optional) = base unit
+	$converted	: ($target / $context) * 1em; //assign conversion formula to variable $converted
+	@return $converted;
+}
+
+// ========== Get the modified values from the color palette ======
+
+@function setColor($palette, $shade: 'base') {
+	// $palette = first level of color map, represents base hue
+	// $shade(optional) = lower level of color map, represents a shade of base hue, defaults to base
+	@return map-get(map-get($color-palettes, $palette), $shade);
+}
+
+// ============ Set the "context" width for the grid ===============
+
+@function g-context($g-col-width, $g-col-count ,$g-gutter-width) {
+	
+	$g-context: ($g-col-width * $g-col-count) + ($g-gutter-width * ($g-col-count - 1));
+	@return $g-context;
+}
