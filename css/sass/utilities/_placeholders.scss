@@ -84,8 +84,9 @@
 	color: $color-font-base;
  	font-weight: $font-weight--medium;
   	font-size: em(20px);
-	margin: em(40px) auto em(25px);
+	margin: em(5px) auto em(25px);
 	padding-left: 10px;
+	text-align: left;
 	@include margin-left-right(auto);
 	@include mq(medium) {
 		text-align: left;

@@ -27,7 +27,7 @@
 	border: $border--thick;
 	z-index:  map-get($z-index, pop-up);
 	@include mq(medium) {
-		width: 500px;
+		width: 400px;
 		left: 50vw;
 		transform: translateX(-200px);
 		box-shadow: 0 0 50px 30px $color-shadow;
@@ -55,7 +55,6 @@
 		@extend %srt;
 	}
 }
-
 .btn {
 	@include m(close) {
 		right: 0.5em;

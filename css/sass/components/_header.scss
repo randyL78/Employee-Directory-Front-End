@@ -1,0 +1,6 @@
+.header {
+	@extend %container-flex;
+	justify-content: space-between;
+	padding: em(25px);
+}
+
