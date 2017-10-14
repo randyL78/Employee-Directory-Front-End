@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		console.log(currentEmployee);
 		let employee = employees[currentEmployee];
 		let cardInner = 
-		   `<img src="${employee.picture.medium}" class="img--profile">
+		   `<img src="${employee.picture.large}" class="img--profile">
 			<div class="card__content--verticle">
 				<h2 class="headline--secondary">${employee.name.first} ${employee.name.last}</h2>
 				<p>${employee.login.username}</p>
