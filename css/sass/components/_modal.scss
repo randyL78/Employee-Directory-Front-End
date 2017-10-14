@@ -15,7 +15,9 @@
 
 
 .modal {
+	padding: 25px;
 	position: fixed;
+	border-radius: $border--rounded-corners;
 	top: 25vh;
 	width: 100%;
 	min-height: 200px;
@@ -32,15 +34,67 @@
 	}	
 }
 
-.warning {
-	background: $color-warning;
-	color: $color-font-white;
+[class^="btn"] {
+	padding: 0;
+	position: absolute;
+	height: 2.3em;
+	width: 2.3em;
+	overflow: hidden;
+	outline: none;
+	border: 3px solid $color-font-white;
+	border-radius: $border--round;
+	transition: background-color $trns--duration-faster, border-color $trns--duration-fast;
+	background-color: $color-primary;
+	&:hover {
+		border-color: $color-highlight;
+	}
+	&:active {
+		background-color: $color-shadow;
+	}
+	& span {
+		@extend %srt;
+	}
 }
 
-.success {
-	background: $color-highlight;
-	color: $color-font-white;	
+.btn {
+	@include m(close) {
+		right: 0.5em;
+		top: 0.5em;
+		background-color: $color-warning;
+	}
+	@include m(next) {
+		right: 0.5em;
+		top: 50%;
+	}
+	@include m(previous) {
+		left: 0.5em;
+		top: 50%;
+	}
 }
+
+.open {
+	display: block;
+}
+
+.icn {
+	width: 2em;
+	height: 2em;
+
+}
+.svg {
+	@include m(text) {
+		fill:#FFFFFF;
+	}
+	@include m(shadow) {
+		fill-opacity:0.36;
+	}
+	@include m(highlight) {
+		opacity:0.53;
+		fill:#FFFFFF;
+	}
+}
+
+
 
 
 

@@ -19,11 +19,16 @@
 	}
 	&--secondary {
 		@extend %hdln-sec;
+		text-transform: capitalize;
 	}
 }
 
 .link {
 	@extend %links;
+	@include margin-top-bottom(em(5px));
+	&:hover {
+		background-color: $color-highlight;
+	}
 }
 
 p {

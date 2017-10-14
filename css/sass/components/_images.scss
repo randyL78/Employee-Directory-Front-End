@@ -21,7 +21,10 @@
 	@include m(profile) {		// .img--profile
 		@extend %img--center;
 		border-radius: $border--round;
-		height: 3rem;
+		height: 10rem;
+		@include mq(medium) {
+			box-shadow: 0 0 7px 5px $color-shadow;
+		}
 	}
 	
 }
