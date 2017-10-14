@@ -25,24 +25,22 @@
   font-size: 1.25em;
   margin: 0.3125em auto 1.5625em;
   padding-left: 10px;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto; }
+  text-align: left; }
   @media (min-width: 769px) {
     .headline--primary {
-      text-align: left;
-      padding-left: 20px; } }
+      margin: 0;
+      padding-top: 2em; } }
 
 .headline--secondary {
   font-weight: 700;
   font-size: 1.25em;
   margin-bottom: 0.3125em; }
 
-.header, .wrapper, .card {
+.header, .wrapper, .card, fieldset {
   display: flex;
   flex-direction: column; }
   @media (min-width: 769px) {
-    .header, .wrapper, .card {
+    .header, .wrapper, .card, fieldset {
       flex-direction: row; } }
 
 fieldset {
@@ -234,11 +232,21 @@ p {
   font-weight: 400; }
 
 ul {
+  display: flex;
+  justify-content: space-around;
   list-style-type: none;
-  padding-left: 0; }
+  margin: 0;
+  padding-left: 0;
+  text-align: left; }
+  @media (min-width: 769px) {
+    ul {
+      flex-direction: column; } }
 
 li {
   display: inline-block; }
+  @media (min-width: 769px) {
+    li + li {
+      padding-top: .5em; } }
 
 hr {
   margin-top: 1.5em;
@@ -262,7 +270,10 @@ p {
 
 .header {
   justify-content: space-between;
-  padding: 1.5625em; }
+  padding: 0.9375em; }
+  @media (min-width: 769px) {
+    .header {
+      padding: 1.5625em; } }
 
 .img--logo {
   margin-bottom: 20px; }
@@ -446,4 +457,16 @@ p {
 .selected {
   color: #A5F038; }
 
-/* CSS Document */
+fieldset {
+  justify-content: center;
+  background: #eaf2f6;
+  border: 1px solid #c0bfbf;
+  border-radius: 10px;
+  transition: 0.4s ease-in; }
+  @media (min-width: 769px) {
+    fieldset {
+      width: 25%;
+      border-right-width: 3px;
+      border-bottom-width: 3px; } }
+  fieldset:hover {
+    border-color: #A5F038; }

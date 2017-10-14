@@ -24,13 +24,26 @@ h1 {
 
 // Remove bullets from unordered lists
 ul {
+	display: flex;
+	justify-content: space-around;
 	list-style-type: none;
+	margin: 0;
 	padding-left: 0;
+	text-align: left;
+	@include mq(medium) {
+		flex-direction: column;
+	}
+	
 }
 
 
 li {
 	display: inline-block;
+	& + & {
+		@include mq(medium) {
+			padding-top: .5em;
+		}
+	}
 }
 
 hr {

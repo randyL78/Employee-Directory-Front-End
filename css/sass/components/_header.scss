@@ -1,7 +1,10 @@
 .header {
 	@extend %container-flex;
 	justify-content: space-between;
-	padding: em(25px);
+	padding: em(15px);
+	@include mq(medium) {
+		padding: em(25px);
+	}
 }
 
 

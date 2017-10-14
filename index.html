@@ -36,10 +36,16 @@
 		<h1 class="headline--primary">Awesome Startup Employee Directory</h1>
 		<fieldset>
 			<legend>Sort By:</legend>
-			<input type="radio" id="sort-Name" name="sort" value="name" checked>
-			<label for="sort-Name">First Name</label>
-			<input type="radio" id="sort-User" name="sort" value="user">
-			<label for="sort-User">Username</label>			
+			<ul class="sort">
+				<li>
+					<input type="radio" id="sort-Name" name="sort" value="first" checked>
+					<label for="sort-Name">First Name</label>
+				</li>
+				<li>
+					<input type="radio" id="sort-User" name="sort" value="user">
+					<label for="sort-User">Username</label>
+				</li>
+			</ul>
 		</fieldset>
 	</header>
 	<main class="wrapper">

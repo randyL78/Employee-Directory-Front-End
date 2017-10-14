@@ -13,8 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	const closeModal = modal.querySelector(".btn--close");
 	const nextModal = modal.querySelector(".btn--next");
 	const previousModal = modal.querySelector(".btn--previous");
+	const sortUL = document.querySelector(".sort");
+	
 	let employees = [];
 	let currentEmployee = 0; // use to display correct employee in modal
+	let sortType = "first";  // use to tell what method to sort employees by
 	
 	// ************************************************************
 	//				functions
@@ -26,6 +29,50 @@ document.addEventListener('DOMContentLoaded', function () {
 			currentEmployee = employeeCount -1;
 		} 
 		updateModal();
+	}
+	
+	function sortEmployees() {
+		if (sortType === "first") {
+			sortEmployeesByType("name", "first");
+		} else if (sortType === "user") {
+			sortEmployeesByType("login","username");
+		}
+		displayEmployees();
+		
+	}
+	
+	function sortEmployeesByType(mainProp, subProp) {
+		let employeeNames = [];
+
+		employees.forEach((employee) => {
+			employeeNames.push(employee[mainProp][subProp]);
+		});
+		
+		console.log(employeeNames);
+		employeeNames.sort();
+		employees.sort((firstVal, nextVal) => {
+			firstVal = employeeNames.indexOf(firstVal[mainProp][subProp]);
+			nextVal = employeeNames.indexOf(nextVal[mainProp][subProp]);
+			return firstVal - nextVal;
+		});
+	}	
+	
+	function displayEmployees() {
+		wrapper.innerHTML = "";
+		employees.forEach( (employee, index) => { 
+			const cardElement = document.createElement('article');
+			cardElement.classList.add('card');
+			cardElement.setAttribute('data-value', index);
+			let cardInner = 
+			`	<img src="${employee.picture.medium}" class="img--avatar">
+				<div class="card__content--verticle">
+					<h2 class="headline--secondary">${employee.name.first} ${employee.name.last}</h2>
+					<p>${employee.login.username}</a>
+					<p class="address">${employee.location.city}, ${employee.location.state}</p>
+				</div>	 `;
+			cardElement.innerHTML = cardInner;
+			wrapper.appendChild(cardElement);				
+		});
 	}
 	
 	function openModal(value) {
@@ -66,20 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		if(employeeRequest.readyState === 4) {
 			const data = JSON.parse(employeeRequest.responseText);
 			employees = data.results;
-			employees.forEach( (employee, index) => { 
-				const cardElement = document.createElement('article');
-				cardElement.classList.add('card');
-				cardElement.setAttribute('data-value', index);
-				let cardInner = 
-				`	<img src="${employee.picture.medium}" class="img--avatar">
-					<div class="card__content--verticle">
-						<h2 class="headline--secondary">${employee.name.first} ${employee.name.last}</h2>
-						<p>${employee.login.username}</a>
-						<p class="address">${employee.location.city}, ${employee.location.state}</p>
-					</div>	 `;
-				cardElement.innerHTML = cardInner;
-				wrapper.appendChild(cardElement);				
-			});
+			sortEmployees();
 		}
 	};
 	employeeRequest.open('GET', urlAPI);
@@ -112,6 +146,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		currentEmployee --;
 		iterateEmployee();
 	};	
+	sortUL.onchange = (e) => {
+		sortType = e.target.value;
+		sortEmployees();
+	};
 });
 	
 

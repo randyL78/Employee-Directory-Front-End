@@ -1,2 +1,16 @@
-/* CSS Document */
-
+fieldset {
+	@extend %container-flex;
+	justify-content: center;
+	background: setColor(primary, xx-light);
+	border: $border--theme;
+	border-radius: $border--rounded-corners;
+	transition: $trns--duration-fast;
+	@include mq(medium) {
+		width: 25%;
+		border-right-width: 3px;
+		border-bottom-width: 3px;
+	}
+	&:hover {
+		border-color: $color-highlight;
+	}
+}
