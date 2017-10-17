@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	// ************************************************************
 	//				functions
 	// ************************************************************		
+	// change which employee the modal displays
 	function iterateEmployee() {
 		if (currentEmployee > employeeCount -1) {
 			currentEmployee = 0;
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		updateModal();
 	}
 	
+	// use the sortType variable to determine what object properties to sort
 	function sortEmployees() {
 		if (sortType === "first") {
 			sortEmployeesByType("name", "first");
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		
 	}
 	
+	// sort the employees array by properties passed to function
 	function sortEmployeesByType(mainProp, subProp) {
 		let employeeNames = [];
 
@@ -57,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	}	
 	
+	// use a single employee's info to create an "card" in html
 	function displayEmployees() {
 		wrapper.innerHTML = "";
 		employees.forEach( (employee, index) => { 
@@ -75,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	}
 	
+	// display the modal by changing overlay's display property
 	function openModal(value) {
 		console.log(value);
 		currentEmployee = value;
@@ -82,9 +87,16 @@ document.addEventListener('DOMContentLoaded', function () {
 		overlay.classList.add('open');
 	}
 	
+	// 	load employee info into modal window
 	function updateModal() {
 		console.log(currentEmployee);
 		let employee = employees[currentEmployee];
+		// manipulate birthday string to get format we want
+		let bDay = employee.dob.slice(0, employee.dob.indexOf(" ")); // remove time from birthday
+		let bDayChars = bDay.split("-"); // split birthday into seperate strings to reorder them
+		bDayChars[0] = bDayChars[0].slice(2,4); // extract 2 digit year from string
+		bDay = bDayChars[1] + "/" + bDayChars[2] + "/" + bDayChars[0]; // reorder into mm/dd/yy format
+			
 		let cardInner = 
 		   `<img src="${employee.picture.large}" class="img--profile">
 			<div class="card__content--verticle">
@@ -94,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				<hr>
 				<a class="link" href="tel:+1${employee.cell}">${employee.cell}</a>
 				<p class="address">${employee.location.street} ${employee.location.city}, ${employee.location.state}</p>
-				<p>Birthday:${employee.dob}</p>
+				<p>Birthday:${bDay}</p>
 			</div> `;
 		modalContent.innerHTML = cardInner;			
 	}
@@ -103,12 +115,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	//				Ajax API call and handler
 	// ************************************************************	
 	
+	// adjust settings for API
 	const urlAPI = 'https://randomuser.me/api/?results=' + 
 					employeeCount +
 		  			"&inc=name, picture, email, location, cell, login, dob" +
 		  			"&noinfo" +
 		  			"&nat=US";
 	const employeeRequest = new XMLHttpRequest();	
+	// wait until data has been retrieved
 	employeeRequest.onreadystatechange = () => {
 		if(employeeRequest.readyState === 4) {
 			const data = JSON.parse(employeeRequest.responseText);
@@ -124,6 +138,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	// ************************************************************	
 	wrapper.onclick = (e) => {
 		let clickedElement = e.target;
+		
+		// filter through parents of the clicked element until the data-value attribute is found
 		if (!clickedElement.classList.contains('link')) {
 			if  (clickedElement.classList.contains('card')) {
 				const value = clickedElement.getAttribute('data-value');
@@ -137,6 +153,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			}	
 		}
 	};
+	
+	// modal buttons
 	closeModal.onclick = () => {overlay.classList.remove('open');};	
 	nextModal.onclick = () => {
 		currentEmployee ++;
@@ -146,6 +164,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		currentEmployee --;
 		iterateEmployee();
 	};	
+	
+	// radio buttons
 	sortUL.onchange = (e) => {
 		sortType = e.target.value;
 		sortEmployees();

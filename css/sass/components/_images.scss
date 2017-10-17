@@ -11,6 +11,7 @@
 		@extend %img--center;
 		border-radius: $border--round;
 		height: 7rem;
+		width: 7rem;
 		@include mq(medium) {
 			box-shadow: 0 0 2px 3px $color-shadow;
 			@include margin-left-right(15px);
@@ -22,6 +23,7 @@
 		@extend %img--center;
 		border-radius: $border--round;
 		height: 10rem;
+		width: 10rem;
 		@include mq(medium) {
 			box-shadow: 0 0 7px 5px $color-shadow;
 		}

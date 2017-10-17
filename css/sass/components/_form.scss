@@ -14,3 +14,48 @@ fieldset {
 		border-color: $color-highlight;
 	}
 }
+
+.radio {
+	@include e(input) {
+		display: none;
+		+ label {
+			transition: color $trns--duration-faster;
+		}
+	}
+	@include e(outer) {
+		display: inline-block;
+		margin-left: em(15px);
+		border: 1px solid $color-primary;
+		border-radius: $border--rounded-corners;
+		box-shadow: 1px 1px .1em 0 $color-shadow;
+	}
+	@include e(inner) {
+		display: block;
+		opacity: 0;
+		width: 0.625em;
+		height: 0.625em;
+		background: $color-highlight;
+		box-shadow: 0 0 .2em .1em setColor(primary, dark) inset;
+		border-radius: $border--rounded-corners;
+		transition: opacity $trns--duration-faster;
+	}
+	
+	@include e(content) {
+		padding-left: .5em;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	& label {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+	}
+	&__input:checked + label  {
+		color: setColor(primary, light);
+		& .radio__inner {
+			opacity: 1;
+		}
+	}
+	
+}

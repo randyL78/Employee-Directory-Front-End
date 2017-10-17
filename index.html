@@ -38,12 +38,22 @@
 			<legend>Sort By:</legend>
 			<ul class="sort">
 				<li>
-					<input type="radio" id="sort-Name" name="sort" value="first" checked>
-					<label for="sort-Name">First Name</label>
+					<input type="radio" id="sort-Name" name="sort" value="first" class="radio__input" checked>
+					<label for="sort-Name">
+						<span class="radio__outer">
+							<span class="radio__inner"></span>
+						</span>
+						<span class="radio__content">First Name</span>
+					</label>			
 				</li>
 				<li>
-					<input type="radio" id="sort-User" name="sort" value="user">
-					<label for="sort-User">Username</label>
+					<input type="radio" id="sort-User" name="sort" value="user" class="radio__input">
+					<label for="sort-User">
+						<span class="radio__outer">
+							<span class="radio__inner"></span>
+						</span>
+						<span class="radio__content">Username</span>
+					</label>
 				</li>
 			</ul>
 		</fieldset>
@@ -72,7 +82,6 @@
 						<use xlink:href="#previous"/>
 					</svg>
 				</button>
-
 				<div class="modal__inner">
 					<h2>Attention!</h2>
 					<p>This is a test modal</p>
