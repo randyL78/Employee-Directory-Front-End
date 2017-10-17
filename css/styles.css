@@ -43,13 +43,6 @@
     .header, .wrapper, .card, fieldset {
       flex-direction: row; } }
 
-fieldset {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-  text-align: center; }
-
 .card__content--verticle {
   display: flex;
   flex-direction: column; }
@@ -412,52 +405,6 @@ p {
 .svg--highlight {
   opacity: 0.53;
   fill: #FFFFFF; }
-
-.toggle {
-  display: block;
-  padding-top: .3em;
-  width: 5.0em;
-  height: 2.0em;
-  border-radius: 1.3em;
-  border: 2px solid #868585;
-  overflow: hidden;
-  background-color: #4E93B7; }
-  @media (min-width: 769px) {
-    .toggle {
-      background-color: #7aaec9;
-      box-shadow: 0 2px 3px 1px #3e3d3d inset; } }
-  .toggle__input {
-    display: none; }
-  .toggle__plate {
-    color: #fff;
-    margin-left: -2.1em;
-    transition: margin 0.4s ease-in; }
-    .toggle__plate:before {
-      padding-right: 1.2em;
-      content: "ON"; }
-    .toggle__plate:after {
-      padding-left: 1.3em;
-      content: "OFF"; }
-  .toggle__input:checked + .toggle .toggle__plate {
-    margin-left: 1em; }
-  .toggle__switch {
-    display: block;
-    position: relative;
-    width: 1.7em;
-    height: 1.7em;
-    border: 1px solid #868585;
-    border-radius: 50%;
-    background: #fff;
-    transition: margin 0.4s ease-in;
-    transform: translateY(-1.4em); }
-    @media (min-width: 769px) {
-      .toggle__switch {
-        box-shadow: -2px -2px 6px 2px #535252 inset; } }
-  .toggle__input:checked + .toggle .toggle__switch {
-    margin-left: 3.1em; }
-
-.selected {
-  color: #A5F038; }
 
 fieldset {
   justify-content: center;
