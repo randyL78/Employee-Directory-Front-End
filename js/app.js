@@ -117,6 +117,28 @@ document.addEventListener('DOMContentLoaded', function () {
 	// adjust settings for API
 	const urlAPI = `https://randomuser.me/api/?results=${employeeCount}&inc=name, picture, email, location, cell, login, dob&noinfo&nat=US`;
 
+
+	/**
+	 * Fetch Employee data 
+	 */
+	const fetchEmployees = () => {
+		fetch(urlAPI)
+			.then(res => res.json())
+			.then(data => {
+				employees = data.results;
+				/* Uncomment to troubleshoot data coming in */
+				// console.log(employees);
+				sortEmployees();
+			});
+	}
+	fetchEmployees();
+
+
+	/**
+	 * fetch employee data using XMLHttpRequest
+	 * May update as a fallbcak for browsers that don't use fetch()
+	 * @deprecated as of 7/3/2018
+	 */
 	const employeeRequest = new XMLHttpRequest();	
 	// wait until data has been retrieved
 	employeeRequest.onreadystatechange = () => {
@@ -128,8 +150,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			// console.log(employees);
 		}
 	};
-	employeeRequest.open('GET', urlAPI);
-	employeeRequest.send();
+	// employeeRequest.open('GET', urlAPI);
+	// employeeRequest.send();
 	
 	// ************************************************************
 	//				Event handlers
