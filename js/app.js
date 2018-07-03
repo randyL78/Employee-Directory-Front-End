@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		updateModal();
 	}
 	
-	// use the sortType variable to determine what object properties to sort
+	// use the sortType variable to determine what object properties to sort by
 	function sortEmployees() {
 		if (sortType === "first") {
 			sortEmployeesByType("name", "first");
@@ -50,8 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		employees.forEach((employee) => {
 			employeeNames.push(employee[mainProp][subProp]);
 		});
-		
-		console.log(employeeNames);
+
 		employeeNames.sort();
 		employees.sort((firstVal, nextVal) => {
 			firstVal = employeeNames.indexOf(firstVal[mainProp][subProp]);
@@ -89,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 	// 	load employee info into modal window
 	function updateModal() {
-		console.log(currentEmployee);
 		let employee = employees[currentEmployee];
 		// manipulate birthday string to get format we want
 		let bDayChars = employee.dob.date
@@ -100,15 +98,15 @@ document.addEventListener('DOMContentLoaded', function () {
 			
 		let cardInner = 
 		   `<img src="${employee.picture.large}" class="img--profile">
-			<div class="card__content--verticle">
-				<h2 class="headline--secondary">${employee.name.first} ${employee.name.last}</h2>
-				<p>${employee.login.username}</p>
-				<a class="link" href="mailto:${employee.email}">${employee.email}</a>
-				<hr>
-				<a class="link" href="tel:+1${employee.cell}">${employee.cell}</a>
-				<p class="address">${employee.location.street} ${employee.location.city}, ${employee.location.state}</p>
-				<p>Birthday:${bDay}</p>
-			</div> `;
+				<div class="card__content--verticle">
+					<h2 class="headline--secondary">${employee.name.first} ${employee.name.last}</h2>
+					<p>${employee.login.username}</p>
+					<a class="link" href="mailto:${employee.email}">${employee.email}</a>
+					<hr>
+					<a class="link" href="tel:+1${employee.cell}">${employee.cell}</a>
+					<p class="address">${employee.location.street} ${employee.location.city}, ${employee.location.state}</p>
+					<p>Birthday:${bDay}</p>
+				</div> `;
 		modalContent.innerHTML = cardInner;			
 	}
 	
@@ -117,11 +115,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	// ************************************************************	
 	
 	// adjust settings for API
-	const urlAPI = 'https://randomuser.me/api/?results=' + 
-					employeeCount +
-		  			"&inc=name, picture, email, location, cell, login, dob" +
-		  			"&noinfo" +
-		  			"&nat=US";
+	const urlAPI = `https://randomuser.me/api/?results=${employeeCount}&inc=name, picture, email, location, cell, login, dob&noinfo&nat=US`;
+
 	const employeeRequest = new XMLHttpRequest();	
 	// wait until data has been retrieved
 	employeeRequest.onreadystatechange = () => {
@@ -129,7 +124,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			const data = JSON.parse(employeeRequest.responseText);
 			employees = data.results;
 			sortEmployees();
-			console.log(employees);
+			/* Uncomment to troubleshoot data coming in */
+			// console.log(employees);
 		}
 	};
 	employeeRequest.open('GET', urlAPI);
