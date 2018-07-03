@@ -92,10 +92,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		console.log(currentEmployee);
 		let employee = employees[currentEmployee];
 		// manipulate birthday string to get format we want
-		let bDay = employee.dob.slice(0, employee.dob.indexOf(" ")); // remove time from birthday
-		let bDayChars = bDay.split("-"); // split birthday into seperate strings to reorder them
+		let bDayChars = employee.dob.date
+			.slice(0, employee.dob.date.indexOf("T")) // remove time from birthday
+			.split("-"); // split birthday into seperate strings to reorder them
 		bDayChars[0] = bDayChars[0].slice(2,4); // extract 2 digit year from string
-		bDay = bDayChars[1] + "/" + bDayChars[2] + "/" + bDayChars[0]; // reorder into mm/dd/yy format
+		const bDay = ` ${bDayChars[1]}/${bDayChars[2]}/${bDayChars[0]}`; // reorder into mm/dd/yy format
 			
 		let cardInner = 
 		   `<img src="${employee.picture.large}" class="img--profile">
@@ -128,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			const data = JSON.parse(employeeRequest.responseText);
 			employees = data.results;
 			sortEmployees();
+			console.log(employees);
 		}
 	};
 	employeeRequest.open('GET', urlAPI);
