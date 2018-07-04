@@ -4,7 +4,8 @@ fieldset {
 	background: setColor(primary, xx-light);
 	border: $border--theme;
 	border-radius: $border--rounded-corners;
-	transition: $trns--duration-fast;
+	transition: border-color $trns--duration-fast;
+	margin-top: .5em;
 	@include mq(medium) {
 		width: 25%;
 		border-right-width: 3px;
@@ -12,6 +13,10 @@ fieldset {
 	}
 	&:hover {
 		border-color: $color-highlight;
+	}
+
+	@include mq(medium) {
+		@include doubly(1.5em);
 	}
 }
 
@@ -58,4 +63,12 @@ fieldset {
 		}
 	}
 	
+}
+
+.input__search {
+	line-height: 2.5em;
+	width: 100%;
+	&::placeholder {
+		text-align: center;
+	}
 }
