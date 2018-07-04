@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	const employeeCount = 12;	// adjust this to grab more or less employees from API	
 	const wrapper = document.querySelector(".wrapper");
 	const sortUL = document.querySelector(".sort");
+	const modalOverlay = new Modal();
+	const modal = document.querySelector(".modal");
+	const modalContent = modal.querySelector(".modal__inner");
+	const closeModal = modal.querySelector(".btn--close");
+	const nextModal = modal.querySelector(".btn--next");
+	const previousModal = modal.querySelector(".btn--previous");
 	let employees = [];
 	let currentEmployee = 0; // use to display correct employee in modal
 	let sortType = "first";  // use to tell what method to sort employees by
@@ -77,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		console.log(value);
 		currentEmployee = value;
 		updateModal();
-		overlay.classList.add('open');
+		modalOverlay.open();
 	}
 	
 	// 	load employee info into modal window
@@ -188,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	};
 	
 	// modal buttons
-	closeModal.onclick = () => {overlay.classList.remove('open');};	
+	closeModal.onclick = () => modalOverlay.close();	
 	nextModal.onclick = () => {
 		currentEmployee ++;
 		iterateEmployee();
