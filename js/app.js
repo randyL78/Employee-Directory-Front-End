@@ -123,16 +123,31 @@ document.addEventListener('DOMContentLoaded', function () {
 	 */
 	const fetchEmployees = () => {
 		fetch(urlAPI)
+			.then(checkStatus)
 			.then(res => res.json())
 			.then(data => {
 				employees = data.results;
 				/* Uncomment to troubleshoot data coming in */
 				// console.log(employees);
 				sortEmployees();
-			});
+			})
+			.catch(handleError);
 	}
 	fetchEmployees();
 
+	function checkStatus (res) { 
+		return res.ok ? 
+			Promise.resolve(res) : 
+			Promise.reject(new Error(res.statusText)) ;
+	}
+
+	function handleError (err) {
+		console.log("Error fetching Employees", err);
+		wrapper.innerHTML = `
+			<h2 style="width: 100%; text-align: center" >Unable to fetch employee data</h2>
+			<p style="width: 100%; text-align: center" >Please try again later</p>
+		`
+	}
 
 	/**
 	 * fetch employee data using XMLHttpRequest
