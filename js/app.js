@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	const employeeCount = 12;	// adjust this to grab more or less employees from API	
 	const wrapper = document.querySelector(".wrapper");
 	const sortUL = document.querySelector(".sort");
+	const searchBar = document.querySelector(".input__search");
 	const modal = new Modal();
 	let employees = [];
 	let currentEmployee = 0; // use to display correct employee in modal
@@ -53,6 +54,22 @@ document.addEventListener('DOMContentLoaded', function () {
 			return firstVal - nextVal;
 		});
 	}	
+
+	function filterEmployees(value) {
+
+		const cards = wrapper.querySelectorAll('.card');
+
+	  cards.forEach( card => {
+			const name = card.getElementsByClassName('name')[0].textContent.toLowerCase();
+			const username = card.getElementsByClassName('username')[0].textContent.toLowerCase();
+			console.log(name + " " + username);
+			if (name.includes(value) || username.includes(value)) {
+				card.classList.remove("hide");
+			} else {
+				card.classList.add("hide");
+			}
+		} );
+	}
 	
 	// use a single employee's info to create an "card" in html
 	function displayEmployees() {
@@ -64,8 +81,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			let cardInner = 
 			`	<img src="${employee.picture.medium}" class="img--avatar">
 				<div class="card__content--verticle">
-					<h2 class="headline--secondary">${employee.name.first} ${employee.name.last}</h2>
-					<p>${employee.login.username}</a>
+					<h2 class="headline--secondary name">${employee.name.first} ${employee.name.last}</h2>
+					<p class= "username" >${employee.login.username}</a>
 					<p class="address">${employee.location.city}, ${employee.location.state}</p>
 				</div>	 `;
 			cardElement.innerHTML = cardInner;
@@ -169,6 +186,17 @@ document.addEventListener('DOMContentLoaded', function () {
 	// ************************************************************
 	//				Event handlers
 	// ************************************************************	
+
+	// radio buttons
+	sortUL.onchange = (e) => {
+		sortType = e.target.value;
+		sortEmployees();
+	};
+
+	// search bar
+	searchBar.addEventListener('keyup', e => filterEmployees(e.currentTarget.value.toLowerCase()));
+
+	// cards
 	wrapper.onclick = (e) => {
 		let clickedElement = e.target;
 		
@@ -197,11 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		iterateEmployee();
 	};	
 	
-	// radio buttons
-	sortUL.onchange = (e) => {
-		sortType = e.target.value;
-		sortEmployees();
-	};
+
 });
 	
 

@@ -330,6 +330,9 @@ p {
 .address {
   text-transform: capitalize; }
 
+.hide {
+  display: none; }
+
 .overlay {
   display: none;
   position: fixed;
