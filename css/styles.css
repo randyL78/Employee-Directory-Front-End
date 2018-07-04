@@ -459,6 +459,7 @@ fieldset {
 
 .input__search {
   line-height: 2.5em;
+  padding-left: .25em;
   width: 100%; }
   .input__search::placeholder {
     text-align: center; }
