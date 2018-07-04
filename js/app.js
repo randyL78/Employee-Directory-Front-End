@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	const sortUL = document.querySelector(".sort");
 	const searchBar = document.querySelector(".input__search");
 	const modal = new Modal();
-	let employees = [];
+	let employees = []; // all employees
+	let filteredEmployees = []; // the working array for the employees to display
 	let currentEmployee = 0; // use to display correct employee in modal
 	let sortType = "first";  // use to tell what method to sort employees by
 	
@@ -20,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
 	// ************************************************************		
 	// change which employee the modal displays
 	function iterateEmployee() {
-		if (currentEmployee > employeeCount -1) {
+		if (currentEmployee > filteredEmployees.length -1) {
 			currentEmployee = 0;
 		} else if (currentEmployee < 0) {
-			currentEmployee = employeeCount -1;
+			currentEmployee = filteredEmployees.length -1;
 		} 
 		updateModal();
 	}
@@ -43,12 +44,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	function sortEmployeesByType(mainProp, subProp) {
 		let employeeNames = [];
 
-		employees.forEach((employee) => {
+		filteredEmployees.forEach((employee) => {
 			employeeNames.push(employee[mainProp][subProp]);
 		});
 
 		employeeNames.sort();
-		employees.sort((firstVal, nextVal) => {
+		filteredEmployees.sort((firstVal, nextVal) => {
 			firstVal = employeeNames.indexOf(firstVal[mainProp][subProp]);
 			nextVal = employeeNames.indexOf(nextVal[mainProp][subProp]);
 			return firstVal - nextVal;
@@ -56,25 +57,25 @@ document.addEventListener('DOMContentLoaded', function () {
 	}	
 
 	function filterEmployees(value) {
-
-		const cards = wrapper.querySelectorAll('.card');
-
-	  cards.forEach( card => {
-			const name = card.getElementsByClassName('name')[0].textContent.toLowerCase();
-			const username = card.getElementsByClassName('username')[0].textContent.toLowerCase();
-			console.log(name + " " + username);
-			if (name.includes(value) || username.includes(value)) {
-				card.classList.remove("hide");
-			} else {
-				card.classList.add("hide");
-			}
-		} );
+		if (value) {
+			filteredEmployees = [];
+			employees.forEach(employee => {
+				const name = `${employee.name.first} ${employee.name.last}`;
+				const username = employee.login.username;
+				if (name.toLowerCase().includes(value) || username.toLowerCase().includes(value) ) {
+					filteredEmployees.push(employee);
+				}
+			});
+		} else {
+			filteredEmployees = employees;
+		}
+		sortEmployees();
 	}
 	
 	// use a single employee's info to create an "card" in html
 	function displayEmployees() {
 		wrapper.innerHTML = "";
-		employees.forEach( (employee, index) => { 
+		filteredEmployees.forEach( (employee, index) => { 
 			const cardElement = document.createElement('article');
 			cardElement.classList.add('card');
 			cardElement.setAttribute('data-value', index);
@@ -92,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 	// display the modal by changing overlay's display property
 	function openModal(value) {
-		console.log(value);
 		currentEmployee = value;
 		updateModal();
 		modal.open();
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 	// 	load employee info into modal window
 	function updateModal() {
-		let employee = employees[currentEmployee];
+		let employee = filteredEmployees[currentEmployee];
 		// manipulate birthday string to get format we want
 		let bDayChars = employee.dob.date
 			.slice(0, employee.dob.date.indexOf("T")) // remove time from birthday
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				employees = data.results;
 				/* Uncomment to troubleshoot data coming in */
 				// console.log(employees);
-				sortEmployees();
+				filterEmployees();
 			})
 			.catch(handleError);
 	}
