@@ -15,6 +15,7 @@ class Modal {
   constructor() {
     this.overlay = document.createElement('div');
     this.createHTML(); 
+    this.closeButton.addEventListener('click', e => this.close());
   }
   createHTML() {
     this.overlay.classList.add('overlay');
@@ -49,6 +50,7 @@ class Modal {
     document.getElementsByTagName('body')[0].appendChild(this.overlay);
   }
 
+  /* *******  Methods ********** */
   open() {
     this.overlay.classList.add('open');
   }
@@ -57,6 +59,20 @@ class Modal {
     this.overlay.classList.remove('open');
   }
 
+  /* ******* Getters *********** */
+  get closeButton() {
+    return this.overlay.getElementsByClassName("btn--close")[0];
+  }
+
+  get previousButton() {
+    return this.overlay.getElementsByClassName("btn--previous")[0];   
+  }
+
+  get nextButton() {
+    return this.overlay.getElementsByClassName("btn--next")[0];
+  }
+
+  /* ******* Setters *********** */
   set message(message) {
     this.overlay.getElementsByClassName('modal__inner')[0].innerHTML = message;
   }

@@ -9,12 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
 	const employeeCount = 12;	// adjust this to grab more or less employees from API	
 	const wrapper = document.querySelector(".wrapper");
 	const sortUL = document.querySelector(".sort");
-	const modalOverlay = new Modal();
-	const modal = document.querySelector(".modal");
-	const modalContent = modal.querySelector(".modal__inner");
-	const closeModal = modal.querySelector(".btn--close");
-	const nextModal = modal.querySelector(".btn--next");
-	const previousModal = modal.querySelector(".btn--previous");
+	const modal = new Modal();
+	// const modalInner = document.querySelector(".modal");
+	// const nextModal = modalInner.querySelector(".btn--next");
+	// const previousModal = modalInner.querySelector(".btn--previous");
 	let employees = [];
 	let currentEmployee = 0; // use to display correct employee in modal
 	let sortType = "first";  // use to tell what method to sort employees by
@@ -83,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		console.log(value);
 		currentEmployee = value;
 		updateModal();
-		modalOverlay.open();
+		modal.open();
 	}
 	
 	// 	load employee info into modal window
@@ -96,18 +94,17 @@ document.addEventListener('DOMContentLoaded', function () {
 		bDayChars[0] = bDayChars[0].slice(2,4); // extract 2 digit year from string
 		const bDay = ` ${bDayChars[1]}/${bDayChars[2]}/${bDayChars[0]}`; // reorder into mm/dd/yy format
 			
-		let cardInner = 
-		   `<img src="${employee.picture.large}" class="img--profile">
-				<div class="card__content--verticle">
-					<h2 class="headline--secondary">${employee.name.first} ${employee.name.last}</h2>
-					<p>${employee.login.username}</p>
-					<a class="link" href="mailto:${employee.email}">${employee.email}</a>
-					<hr>
-					<a class="link" href="tel:+1${employee.cell}">${employee.cell}</a>
-					<p class="address">${employee.location.street} ${employee.location.city}, ${employee.location.state}</p>
-					<p>Birthday:${bDay}</p>
-				</div> `;
-		modalContent.innerHTML = cardInner;			
+		modal.message = 
+			`<img src="${employee.picture.large}" class="img--profile">
+			<div class="card__content--verticle">
+				<h2 class="headline--secondary">${employee.name.first} ${employee.name.last}</h2>
+				<p>${employee.login.username}</p>
+				<a class="link" href="mailto:${employee.email}">${employee.email}</a>
+				<hr>
+				<a class="link" href="tel:+1${employee.cell}">${employee.cell}</a>
+				<p class="address">${employee.location.street} ${employee.location.city}, ${employee.location.state}</p>
+				<p>Birthday:${bDay}</p>
+			</div> `;		
 	}
 	
 	// ************************************************************
@@ -194,12 +191,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	};
 	
 	// modal buttons
-	closeModal.onclick = () => modalOverlay.close();	
-	nextModal.onclick = () => {
+	modal.nextButton.onclick = () => {
 		currentEmployee ++;
 		iterateEmployee();
 	};	
-	previousModal.onclick = () => {
+	modal.previousButton.onclick = () => {
 		currentEmployee --;
 		iterateEmployee();
 	};	
