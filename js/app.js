@@ -10,9 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	const wrapper = document.querySelector(".wrapper");
 	const sortUL = document.querySelector(".sort");
 	const modal = new Modal();
-	// const modalInner = document.querySelector(".modal");
-	// const nextModal = modalInner.querySelector(".btn--next");
-	// const previousModal = modalInner.querySelector(".btn--previous");
 	let employees = [];
 	let currentEmployee = 0; // use to display correct employee in modal
 	let sortType = "first";  // use to tell what method to sort employees by
