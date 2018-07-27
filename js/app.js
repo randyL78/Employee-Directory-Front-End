@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		sortEmployees();
 	}
 	
-	// use a single employee's info to create an "card" in html
+	// use a single employee's info to create a "card" in html
 	function displayEmployees() {
 		wrapper.innerHTML = "";
 		filteredEmployees.forEach( (employee, index) => { 
@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			`	<img src="${employee.picture.medium}" class="img--avatar">
 				<div class="card__content--verticle">
 					<h2 class="headline--secondary name">${employee.name.first} ${employee.name.last}</h2>
-					<p class= "username" >${employee.login.username}</a>
+					<p class= "username" >${employee.login.username}</p>
+					<a class="link" href="mailto:${employee.email}">${employee.email}</a>
 					<p class="address">${employee.location.city}, ${employee.location.state}</p>
 				</div>	 `;
 			cardElement.innerHTML = cardInner;
